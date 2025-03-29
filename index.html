@@ -464,7 +464,7 @@
         const now = new Date().getTime();
         const remaining = endDate - now;
 
-        if (remaining <= 0) {
+        if (remaining <= 30) {
             display.textContent = "00:00:00:00"; // Timer खत्म होने के बाद
             return;
         }
