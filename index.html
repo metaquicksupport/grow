@@ -448,21 +448,21 @@
                 }
             };
     
-            // Timer setup for 8 hours countdown loop
-            const duration = 8 * 60 * 60 * 1000; // 8 hours in milliseconds
+            // Timer setup for 4 hours countdown loop
+            const duration = 4 * 60 * 60 * 1000; // 4 hours in milliseconds
             const display = document.querySelector('#time');
     
             let remaining = localStorage.getItem('remainingTime');
             
             if (!remaining) {
-                remaining = duration; // Start with 8 hours if no saved time exists
+                remaining = duration; // Start with 4 hours if no saved time exists
             } else {
                 remaining = parseInt(remaining);
             }
     
             function updateTimer() {
                 if (remaining <= 0) {
-                    remaining = duration; // Reset the timer to 8 hours when it reaches 0
+                    remaining = duration; // Reset the timer to 4 hours when it reaches 0
                 }
     
                 let hours = String(Math.floor(remaining / (1000 * 60 * 60))).padStart(2, '0');
