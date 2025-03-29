@@ -544,7 +544,6 @@
         <img src="baner me.jpg" alt="Offer Banner" class="banner">
     </section>
 
-
     <div class="timer-box">
         <h1>🎨 Meta special 🌈</h1>
         <span>Special Offer End:</span>
@@ -554,13 +553,13 @@
     <script>
         // Set the starting time (30 seconds)
         let timeLeft = 30;
-        
+    
         // Function to update the timer
         function updateTimer() {
             const timerElement = document.getElementById("time");
     
             // Calculate minutes and seconds
-            const minutes = Math.floor(timeLeft / 60); // This will always be 0 since we're starting with less than 1 minute.
+            const minutes = Math.floor(timeLeft / 60); // Always 0 minutes since it's 30 seconds
             const seconds = timeLeft % 60;
     
             // Display time in MM:SS format
@@ -575,25 +574,11 @@
             }
         }
     
-        // Call updateTimer every second
+        // Call updateTimer every second to start immediately
         const timerInterval = setInterval(updateTimer, 1000);
     </script>
     
-    <style>
-        /* Styling the timer */
-        .timer-box {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin-top: 50px;
-        }
     
-        .timer {
-            font-size: 72px; /* Increased font size */
-            font-weight: bold;
-            color: #ff6347;
-            display: inline-block;
-        }
-    </style>
     
 
 
