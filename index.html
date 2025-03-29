@@ -457,14 +457,14 @@
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-    const endDate = new Date("March 24, 2025 23:59:59").getTime();
+    const endDate = new Date("April 25, 2025 23:59:59").getTime();
     const display = document.querySelector('#time');
 
     function updateTimer() {
         const now = new Date().getTime();
         const remaining = endDate - now;
 
-        if (remaining <= 30) {
+        if (remaining <= 0) {
             display.textContent = "00:00:00:00"; // Timer खत्म होने के बाद
             return;
         }
