@@ -544,33 +544,28 @@
         <img src="baner me.jpg" alt="Offer Banner" class="banner">
     </section>
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> parent of db9fe15 (Update index.html)
     <div class="timer-box">
         <h1>🎨 Meta special 🌈</h1>
         <span>Special Offer End:</span>
         <div class="timer" id="time">00:30</div>
     </div>
-
-<<<<<<< HEAD
+    
     <script>
-        // Set the starting time (90 seconds)
-        let timeLeft = 90;
+        // Set the starting time (30 seconds)
+        let timeLeft = 30;
         
         // Function to update the timer
         function updateTimer() {
             const timerElement = document.getElementById("time");
-
+    
             // Calculate minutes and seconds
             const minutes = Math.floor(timeLeft / 60);
             const seconds = timeLeft % 60;
-
+    
             // Display time in MM:SS format
             timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-
+    
             // Decrease the time by 1 second
             if (timeLeft > 0) {
                 timeLeft--;
@@ -579,16 +574,13 @@
                 alert("The special offer has ended!");
             }
         }
-
+    
         // Call updateTimer every second
         const timerInterval = setInterval(updateTimer, 1000);
     </script>
+    
 
 
-
-
-=======
->>>>>>> parent of db9fe15 (Update index.html)
     <section class="recharge-form">
         <h3>Get Instagram Blue Tick</h3>
         <form>
