@@ -521,37 +521,26 @@
         <h1>🎨 Meta India 🌈</h1>
         <span>Special Offer End:</span>
         <div class="timer" id="time"></div>
-
+        <div id="popup" style="display: none; color: red; font-size: 24px; font-weight: bold;">⚠ Offer Expired ⚠</div>
+        
         <script>
-            function startTimer(duration) {
-                let timer = duration, hours, minutes, seconds;
-                
+            function startTimer() {
+                let timer = 30, display = document.getElementById('time');
+        
                 function updateTimer() {
-                    hours = Math.floor(timer / 3600);
-                    minutes = Math.floor((timer % 3600) / 60);
-                    seconds = timer % 60;
-        
-                    document.getElementById('time').innerHTML = 
-                        hours.toString().padStart(2, '0') + ":" + 
-                        minutes.toString().padStart(2, '0') + ":" + 
-                        seconds.toString().padStart(2, '0');
-        
+                    display.innerHTML = `00:00:${timer.toString().padStart(2, '0')}`;
                     if (timer > 0) {
                         timer--;
                         setTimeout(updateTimer, 1000);
                     } else {
-                        timer = duration; // Reset to 6 hours
-                        setTimeout(updateTimer, 1000);
+                        document.getElementById('popup').style.display = "block";
                     }
                 }
         
                 updateTimer();
             }
         
-            window.onload = function () {
-                let sixHours = 6 * 60 * 60; // 6 hours in seconds
-                startTimer(sixHours);
-            };
+            window.onload = startTimer;
         </script>
         
 
