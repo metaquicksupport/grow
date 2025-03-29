@@ -544,11 +544,64 @@
         <img src="baner me.jpg" alt="Offer Banner" class="banner">
     </section>
 
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        .timer-box {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+        .timer {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ff6347;
+        }
+    </style>
+</head>
+<body>
+
     <div class="timer-box">
         <h1>🎨 Meta special 🌈</h1>
         <span>Special Offer End:</span>
-        <div class="timer" id="time">00:30</div>
+        <div class="timer" id="time">01:30</div>
     </div>
+
+    <script>
+        // Set the starting time (90 seconds)
+        let timeLeft = 90;
+        
+        // Function to update the timer
+        function updateTimer() {
+            const timerElement = document.getElementById("time");
+
+            // Calculate minutes and seconds
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+
+            // Display time in MM:SS format
+            timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+            // Decrease the time by 1 second
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                clearInterval(timerInterval);
+                alert("The special offer has ended!");
+            }
+        }
+
+        // Call updateTimer every second
+        const timerInterval = setInterval(updateTimer, 1000);
+    </script>
+
+</body>
+</html>
+
 
     <section class="recharge-form">
         <h3>Get Instagram Blue Tick</h3>
