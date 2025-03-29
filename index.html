@@ -547,8 +547,43 @@
     <div class="timer-box">
         <h1>🎨 Meta special 🌈</h1>
         <span>Special Offer End:</span>
-        <div class="timer" id="time">00:30</div>
+        <div class="date" id="date">27-03-2025</div>
     </div>
+    
+    <script>
+        // Get today's date in Indian format (DD-MM-YYYY)
+        function updateDate() {
+            const dateElement = document.getElementById("date");
+    
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+            const year = today.getFullYear();
+    
+            // Display date in DD-MM-YYYY format
+            dateElement.textContent = `${day}-${month}-${year}`;
+        }
+    
+        // Call updateDate to update the date on page load
+        updateDate();
+    </script>
+    
+    <style>
+        /* Styling the timer box */
+        .timer-box {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+    
+        .date {
+            font-size: 18px; /* Set font size to 18px */
+            font-weight: bold;
+            color: #ff6347;
+            display: inline-block;
+        }
+    </style>
+    
     
     
             
