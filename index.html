@@ -541,100 +541,29 @@
     </section>
 
     <div class="timer-box">
-        <h1>🎨 Meta Special 🌈</h1>
+        <h1>🎨 Meta special 🌈</h1>
         <span>Special Offer End:</span>
         <div class="timer" id="time">01:30</div>
     </div>
     
-    <!-- Popup -->
-    <div class="popup-overlay" id="offerPopup" style="display: none;">
-        <div class="popup">
-            <h2>Offer Expired</h2>
-            <p>Sorry, the offer has expired. Please try again.</p>
-            <button onclick="reloadPage()">Try Again</button>
-        </div>
-    </div>
-    
-    <style>
-        /* Timer styling */
-        .timer-box {
-            text-align: center;
-            font-family: Arial, sans-serif;
-        }
-        .timer {
-            font-size: 40px;
-            color: red;
-            margin-top: 10px;
-        }
-    
-        /* Popup styling */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            visibility: hidden;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .popup {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            width: 80%;
-            max-width: 400px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
-    
     <script>
-        // Set the initial time (1.5 minutes = 90 seconds)
-        let timeRemaining = 90;
+        var timerDisplay = document.getElementById('time');
+        var time = 90; // 1 minute 30 seconds = 90 seconds
     
-        // Update the timer every second
-        const timerElement = document.getElementById("time");
-        const offerPopup = document.getElementById("offerPopup");
+        function updateTimer() {
+            var minutes = Math.floor(time / 60);
+            var seconds = time % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            timerDisplay.textContent = minutes + ':' + seconds;
     
-        const timer = setInterval(function() {
-            // Calculate minutes and seconds
-            const minutes = Math.floor(timeRemaining / 60);
-            const seconds = timeRemaining % 60;
-    
-            // Display the time
-            timerElement.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    
-            // Check if the timer has expired
-            if (timeRemaining === 0) {
-                clearInterval(timer);
-                showOfferExpiredPopup();
+            if (time > 0) {
+                time--;
             } else {
-                timeRemaining--;
+                clearInterval(interval);
             }
-        }, 1000);
-    
-        // Function to show the "Offer Expired" popup
-        function showOfferExpiredPopup() {
-            offerPopup.style.visibility = 'visible';
-            offerPopup.style.opacity = '1';
         }
     
-        // Function to reload the page when "Try Again" button is clicked
-        function reloadPage() {
-            location.reload();  // Reload the page
-        }
+        var interval = setInterval(updateTimer, 1000);
     </script>
     
 
