@@ -543,30 +543,8 @@
     <div class="timer-box">
         <h1>🎨 Meta special 🌈</h1>
         <span>Special Offer End:</span>
-        <div class="timer" id="time">01:30</div>
+        <div class="timer" id="time">00:30</div>
     </div>
-    
-    <script>
-        var timerDisplay = document.getElementById('time');
-        var time = 90; // 1 minute 30 seconds = 90 seconds
-    
-        function updateTimer() {
-            var minutes = Math.floor(time / 60);
-            var seconds = time % 60;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
-            timerDisplay.textContent = minutes + ':' + seconds;
-    
-            if (time > 0) {
-                time--;
-            } else {
-                clearInterval(interval);
-            }
-        }
-    
-        // Set the timer to start only once without resetting
-        var interval = setInterval(updateTimer, 1000);
-    </script>
-    
 
     <section class="recharge-form">
         <h3>Get Instagram Blue Tick</h3>
