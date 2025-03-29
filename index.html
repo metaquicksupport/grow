@@ -543,13 +543,12 @@
     <div class="timer-box">
         <h1>🎨 Meta Special 🌈</h1>
         <span>Special Offer End:</span>
-        <div class="timer" id="time">00:30</div>
+        <div class="timer" id="time">01:30</div>
     </div>
     
     <!-- Popup -->
     <div class="popup-overlay" id="offerPopup" style="display: none;">
         <div class="popup">
-            <button class="close-btn" onclick="closePopup()">×</button>
             <h2>Offer Expired</h2>
             <p>Sorry, the offer has expired. Please try again.</p>
             <button onclick="reloadPage()">Try Again</button>
@@ -599,20 +598,11 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-        }
     </style>
     
     <script>
-        // Set the initial time (30 seconds)
-        let timeRemaining = 30;
+        // Set the initial time (1.5 minutes = 90 seconds)
+        let timeRemaining = 90;
     
         // Update the timer every second
         const timerElement = document.getElementById("time");
@@ -639,12 +629,6 @@
         function showOfferExpiredPopup() {
             offerPopup.style.visibility = 'visible';
             offerPopup.style.opacity = '1';
-        }
-    
-        // Function to close the popup
-        function closePopup() {
-            offerPopup.style.visibility = 'hidden';
-            offerPopup.style.opacity = '0';
         }
     
         // Function to reload the page when "Try Again" button is clicked
