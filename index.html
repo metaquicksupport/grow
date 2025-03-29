@@ -492,10 +492,21 @@
         <div class="popup">
             <button class="close-btn" onclick="closePopup()">×</button>
             <h2>🎉 Offer Extended! 🎉</h2>
-            <p>हमारे ग्राहकों की भारी मांग को देखते हुए, हमने <b>मेटा ऑफर</b> को <b>10 दिन</b> और बढ़ा दिया है!  
-            अब आप <b>4 अप्रैल</b> तक इस शानदार डिस्काउंट का लाभ उठा सकते हैं।</p>
+            <p>हमारे ग्राहकों की भारी मांग को देखते हुए, हमने <b>मेटा ऑफर</b> को <b>सिर्फ आज के लिए</b> रखा है!  
+            अब आप <b id="today-date"></b> तक इस शानदार डिस्काउंट का लाभ उठा सकते हैं।</p>
             <p><b>जल्दी करें! यह ऑफर सीमित समय के लिए है। ⏳</b></p>
         </div>
+        
+        <script>
+            function updateDate() {
+                let options = { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'long' };
+                let today = new Date().toLocaleDateString('hi-IN', options);
+                document.getElementById("today-date").innerText = today;
+            }
+            
+            window.onload = updateDate;
+        </script>
+        
         
     </div>
 
@@ -525,7 +536,7 @@
         
         <script>
             function startTimer() {
-                let timer = 30, display = document.getElementById('time');
+                let timer = 15, display = document.getElementById('time');
         
                 function updateTimer() {
                     display.innerHTML = `00:00:${timer.toString().padStart(2, '0')}`;
