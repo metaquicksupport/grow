@@ -426,16 +426,16 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.querySelector('.recharge-form form');
-
+    
             form.onsubmit = function(event) {
                 event.preventDefault();
                 
                 const instagramURL = document.querySelector('#instagram').value;
-
+    
                 if (instagramURL) {
                     // Identify which button was clicked
                     const submitButton = event.submitter;
-
+    
                     if (submitButton.value === "Get Real Blue Tick Now") {
                         window.location.href = `index2.html?url=${encodeURIComponent(instagramURL)}`;
                     } 
@@ -447,41 +447,36 @@
                     }
                 }
             };
-
-            // 24 ghante ka timer
-        const duration = 24 * 60 * 60;
-        const display = document.querySelector('#time');
-        
-        // Timer Initialize
-        initializeTimer(duration, display);
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-    const endDate = new Date("April 25, 2025 23:59:59").getTime();
-    const display = document.querySelector('#time');
-
-    function updateTimer() {
-        const now = new Date().getTime();
-        const remaining = endDate - now;
-
-        if (remaining <= 0) {
-            display.textContent = "00:00:00:00"; // Timer खत्म होने के बाद
-            return;
-        }
-
-        let days = String(Math.floor(remaining / (1000 * 60 * 60 * 24))).padStart(2, '0');
-        let hours = String(Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        let minutes = String(Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        let seconds = String(Math.floor((remaining % (1000 * 60)) / 1000)).padStart(2, '0');
-
-        display.textContent = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
-    }
-
-    updateTimer();
-    setInterval(updateTimer, 1000); // Timer हर सेकंड अपडेट होगा
-});
-
-</script>
+    
+            // Timer setup for 8 hours countdown loop
+            const duration = 8 * 60 * 60 * 1000; // 8 hours in milliseconds
+            const display = document.querySelector('#time');
+            
+            function startTimer() {
+                let remaining = duration;
+    
+                function updateTimer() {
+                    if (remaining <= 0) {
+                        remaining = duration; // Reset the timer to 8 hours when it reaches 0
+                    }
+    
+                    let hours = String(Math.floor(remaining / (1000 * 60 * 60))).padStart(2, '0');
+                    let minutes = String(Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                    let seconds = String(Math.floor((remaining % (1000 * 60)) / 1000)).padStart(2, '0');
+    
+                    display.textContent = `${hours}h : ${minutes}m : ${seconds}s`;
+    
+                    remaining -= 1000; // Decrease by 1 second
+                }
+    
+                updateTimer();
+                setInterval(updateTimer, 1000); // Update every second
+            }
+    
+            startTimer(); // Start the countdown loop
+        });
+    </script>
+    
 </head>
 
 <body>
