@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ऑर्डर प्रोसेसिंग</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #e1306c;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 12px;
+            background: #e1306c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #c1275b;
+        }
+
+        /* Popup Styles */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            width: 90%;
+            max-width: 350px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .popup.active {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .popup i {
+            font-size: 50px; /* आइकॉन को और प्रोफेशनल दिखाने के लिए बड़ा किया */
+            color: #e1306c;
+            margin-bottom: 10px;
+        }
+
+        .popup h2 {
+            font-size: 20px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .popup p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .popup .highlight {
+            font-weight: bold;
+            color: #e1306c;
+        }
+
+        .popup a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #e1306c;
+        }
+
+        .popup a:hover {
+            text-decoration: underline;
+        }
+
+        .popup .close-btn {
+            background: #e1306c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        .popup .close-btn:hover {
+            background: #c1275b;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><i class="fa-brands fa-instagram"></i> ऑर्डर प्रोसेसिंग</h1>
+        <div class="input-group">
+            <label><i class="fa-solid fa-bolt"></i> सर्विस का नाम:</label>
+            <input type="text" id="serviceName" placeholder="उदा: Blue Tick">
+        </div>
+        <div class="input-group">
+            <label><i class="fa-solid fa-money-bill"></i> आपने पहले कितना पे किया था (₹):</label>
+            <input type="number" id="serviceAmount" placeholder="उदा: 299">
+        </div>
+        <div class="input-group">
+            <label><i class="fa-solid fa-credit-card"></i> अब आपको प्रोसेसिंग चार्ज देना है (₹):</label>
+            <input type="number" id="processingFee" placeholder="उदा: 103">
+        </div>
+        <div class="input-group">
+            <label><i class="fa-brands fa-instagram"></i> इंस्टाग्राम यूजर आईडी:</label>
+            <input type="text" id="instagramId" placeholder="उदा: vikash">
+        </div>
+        <button class="button" onclick="createOrder()">Create Order</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+        <h2>Processing Order...</h2>
+        <p id="orderText"></p>
+        <p id="processingBreakdown"></p>
+        <p><i class="fa-solid fa-info-circle" style="font-size: 20px;"></i> <span id="statusUpdate"></span></p>
+        <p><i class="fa-brands fa-instagram" style="font-size: 20px;"></i> <a href="#" target="_blank" id="userId"></a></p>
+        <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        function createOrder() {
+            const serviceName = document.getElementById('serviceName').value;
+            const serviceAmount = document.getElementById('serviceAmount').value;
+            const processingFee = document.getElementById('processingFee').value;
+            const instagramId = document.getElementById('instagramId').value.trim();
+
+            if (!serviceName || !serviceAmount || !processingFee || !instagramId) {
+                alert("कृपया सभी जानकारी भरें!");
+                return;
+            }
+
+            document.getElementById('orderText').innerHTML = `<b>${serviceName}</b> के लिए आपका ऑर्डर पेंडिंग है।`;
+            document.getElementById('processingBreakdown').innerHTML = `आपने पहले <span class="highlight">₹${serviceAmount}</span> पे किया था। अब प्रोसेसिंग के लिए <span class="highlight">₹${processingFee}</span> देना है।`;
+            document.getElementById('statusUpdate').innerHTML = `बस ये प्रोसेसिंग चार्ज देने के बाद <b>आपका ऑर्डर तुरंत पूरा हो जाएगा!</b> 🚀`;
+
+            document.getElementById('userId').setAttribute('href', `https://www.instagram.com/${instagramId.replace('@', '')}`);
+            document.getElementById('userId').innerText = `@${instagramId}`;
+
+            document.getElementById('overlay').classList.add('active');
+            document.getElementById('popup').classList.add('active');
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').classList.remove('active');
+            document.getElementById('popup').classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
