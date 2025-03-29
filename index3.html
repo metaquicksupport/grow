@@ -214,7 +214,7 @@
         }
         
         .logo img {
-            height: 55px;
+            height: 40px;
             padding: 3px;
         }
         .download-btn {
@@ -417,75 +417,78 @@ body {
 
     <script>
 
-        window.onload = function () {
-            setTimeout(function () {
-                document.getElementById("preloader").style.display = "none";
-                document.body.style.overflow = "auto"; // Enable scrolling after load
-            }, 1500); // 1.5 sec me hide ho jayega
-        };
-        
+window.onload = function () {
+    setTimeout(function () {
+        document.getElementById("preloader").style.display = "none";
+        document.body.style.overflow = "auto"; // Enable scrolling after load
+    }, 1500); // 1.5 sec me hide ho jayega
+};
+
+
+
         // Form Submit Handler
-        document.getElementById('Form').onsubmit = function(event) {
+        document.getElementById('paymentForm').onsubmit = function(event) {
             event.preventDefault();
             
             var transactionId = document.getElementById('transactionId').value;
             var popupIncorrect = document.getElementById('popupIncorrect');
             var popupSuccess = document.getElementById('popupSuccess');
-        
+
             if (transactionId.toLowerCase() === '722115163415') {
                 popupSuccess.style.display = 'block';
             } else {
                 popupIncorrect.style.display = 'block';
             }
         }
-        
+
         // Close Popup Function
         function closePopup(popupId) {
             document.getElementById(popupId).style.display = 'none';
         }
-        
-        // 5 minutes timer setup
-        const duration = 5 * 60; // 5 minutes in seconds
+
+        // 24 ghante ka timer
+        const duration = 24 * 60 * 60;
         const display = document.querySelector('#time');
         
         // Timer Initialize
         initializeTimer(duration, display);
-        
-        function initializeTimer(duration, display) {
-            let endTime = sessionStorage.getItem('endTime');
-        
-            // If endTime doesn't exist or expired, set new timer
-            if (!endTime || Date.now() > endTime) {
-                endTime = Date.now() + duration * 1000;  // New 5-minute timer
-                sessionStorage.setItem('endTime', endTime);
+
+    function initializeTimer(duration, display) {
+        let endTime = sessionStorage.getItem('endTime');
+
+        // Agar endTime nahi hai to naya set karein
+        if (!endTime || Date.now() > endTime) {
+            endTime = Date.now() + duration * 1000;  // Naya 24 ghante ka set karein
+            sessionStorage.setItem('endTime', endTime);
+        }
+
+        updateTimer(endTime, display);
+    }
+
+    function updateTimer(endTime, display) {
+        let timerInterval = setInterval(function () {
+            let now = Date.now();
+            let remaining = Math.floor((endTime - now) / 1000);
+
+            if (remaining <= 0) {
+                // Timer 0 par aaya to fir se reset karein
+                sessionStorage.setItem('endTime', Date.now() + 24 * 60 * 60 * 1000);
+                remaining = 24 * 60 * 60;
             }
-        
-            updateTimer(endTime, display);
-        }
-        
-        function updateTimer(endTime, display) {
-            let timerInterval = setInterval(function () {
-                let now = Date.now();
-                let remaining = Math.floor((endTime - now) / 1000);
-        
-                if (remaining <= 0) {
-                    // Reset the timer to 5 minutes after it reaches 0
-                    sessionStorage.setItem('endTime', Date.now() + 5 * 60 * 1000);
-                    remaining = 5 * 60; // Reset to 5 minutes
-                }
-        
-                let minutes = parseInt(remaining / 60, 10);
-                let seconds = parseInt(remaining % 60, 10);
-        
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-        
-                display.textContent = `${minutes}:${seconds}`;
-            }, 1000);
-        }
-        
-        // UPI ID Copy Function
-        function copyUPIID() {
+
+            let hours = parseInt(remaining / 3600, 10);
+            let minutes = parseInt((remaining % 3600) / 60, 10);
+            let seconds = parseInt(remaining % 60, 10);
+
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = `${hours}:${minutes}:${seconds}`;
+        }, 1000);
+    }
+        // UPI ID Copy Karne Ke Liye Function
+    function copyUPIID() {
             const upiID = document.getElementById("upi-text").innerText;
             const tempInput = document.createElement("input");
             tempInput.value = upiID;
@@ -495,8 +498,7 @@ body {
             document.body.removeChild(tempInput);
             alert("UPI ID copied: " + upiID);
         }
-        
-        </script>
-        
+
+    </script>
 </body>
 </html>
