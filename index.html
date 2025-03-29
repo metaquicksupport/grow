@@ -50,7 +50,7 @@
         }
 
         .timer {
-            font-size: 30px;
+            font-size: 18px;
             color: #ff0084;
         }
 
@@ -65,7 +65,7 @@
 
         .recharge-form h3 {
             font-size: 22px;
-            color: #090005;
+            color: #ff0084;
             margin-bottom: 15px;
         }
 
@@ -96,13 +96,14 @@
             width: 100%;
             padding: 12px;
             margin: 10px 0;
-            border: 1px solid #000000;
+            border: 1px solid #ff0084;
             border-radius: 5px;
         }
 
         .recharge-form input[type="submit"] {
-            background: linear-gradient(179deg, #0064E0, #0064E0 );
-            border: 2px solid #0064E0;
+            background: linear-gradient(179deg, #ff008c, #ff0000 );
+            border: 2px solid #ff00b3;
+            box-shadow: 0 0 10px rgba(255, 0, 51, 0.8);
             color: white;
             border: none;
             cursor: pointer;
@@ -251,8 +252,7 @@
         }
 
         .menu-icon, .profile-icon {
-
-
+            font-size: 20px;
             color: #ff0084;
         }
         
@@ -465,8 +465,8 @@
         const now = new Date().getTime();
         const remaining = endDate - now;
 
-        if (remaining <= 30) {
-            display.textContent = "00:00"; // Timer खत्म होने के बाद
+        if (remaining <= 0) {
+            display.textContent = "00:00:00:00"; // Timer खत्म होने के बाद
             return;
         }
 
@@ -486,16 +486,24 @@
 </head>
 
 <body>
-<!-- Popup -->
-<div class="popup-overlay" id="offerPopup">
-    <div class="popup">
-        <button class="close-btn" onclick="closePopup()">×</button>
-        <h2>🎉 Offer Extended! 🎉</h2>
-        <p>हमारे ग्राहकों की भारी मांग को देखते हुए, हमने <b>मेटा ऑफर</b> को <b>आज के दिन</b> और बढ़ा दिया है!  
-        अब आप <b id="today-date"></b> तक इस शानदार डिस्काउंट का लाभ उठा सकते हैं।</p>
-        <p><b>जल्दी करें! यह ऑफर 1 दिन के लिए और बढ़ा दी गई है। ⏳</b></p>
+
+    <!-- Popup -->
+    <div class="popup-overlay" id="offerPopup">
+        <div class="popup">
+            <button class="close-btn" onclick="closePopup()">×</button>
+            <h2>🎉 Offer Extended! 🎉</h2>
+            <p>हमारे ग्राहकों की भारी मांग को देखते हुए, हमने <b>होली ऑफर</b> को <b>10 दिन</b> और बढ़ा दिया है!  
+            अब आप <b>24 मार्च</b> तक इस शानदार डिस्काउंट का लाभ उठा सकते हैं।</p>
+            <p><b>जल्दी करें! यह ऑफर सीमित समय के लिए है। ⏳</b></p>
+        </div>
     </div>
-</div>
+
+    <script>
+        function closePopup() {
+            document.getElementById("offerPopup").style.display = "none";
+        }
+    </script>
+
 
     <!-- Header -->
     <div class="header">
@@ -509,63 +517,11 @@
     </section>
 
     <div class="timer-box">
-        <h1>
-            <img src="verify.png" class="verified-badge" alt="Verified" style="width: 60px; height: 60px; margin-right: 5px;">
-            Instagram special 💫
-        </h1>
-        <span> Offer Till:</span>
-        <div class="date" id="date">27-03-2025</div>
+        <h1>🎨 Holi special 🌈</h1>
+        <span>Special Offer End:</span>
+        <div class="timer" id="time"></div>
     </div>
-    
-    <script>
-        // Get today's date in Indian format (DD-MM-YYYY)
-        function updateDate() {
-            const dateElement = document.getElementById("date");
-    
-            const today = new Date();
-            const day = String(today.getDate()).padStart(2, '0');
-            const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-            const year = today.getFullYear();
-    
-            // Display date in DD-MM-YYYY format
-            dateElement.textContent = `${day}-${month}-${year}`;
-        }
-    
-        // Call updateDate to update the date on page load
-        updateDate();
-    </script>
-    
-    <style>
-        /* Styling the timer box */
-        .timer-box {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin-top: 50px;
-        }
-    
-        .date {
-            font-size: 18px; /* Set font size to 18px */
-            font-weight: bold;
-            color: #ff6347;
-            display: inline-block;
-        }
-    </style>
-    
-<!-- 
-    <section class="recharge-form">
-        <h3>Get Instagram Blue Tick</h3>
-        <form>
-            <label for="instagram">Instagram Profile URL or Username:</label>
-            <input type="text" id="instagram" placeholder="https://www.instagram.com/yourprofile" required>
-    
-            <label for="name">Enter Name:</label>
-            <input type="text" id="name" placeholder="Your Name" required>
-    
-            <input type="submit" value="Click here for the Blue Tick verification ">
-            <input type="submit" value="Like & Views">
-        </form>
-    </section> -->
-    
+
     <section class="recharge-form">
         <h3>Get Real Instagram Followers</h3>
         <form>
@@ -580,109 +536,102 @@
             
         </form>
     </section>
-    
-    
-    
-    
-    <h3 class="center-text">comments</h3>
 
-    <style>
-        .center-text {
-            text-align: center; /* This will center the text horizontally */
-            margin-top: 20px;   /* Optional: Adds some space at the top */
-        }
-    </style>
-    
+    <div class="photo-section">
+        <div class="photo-section">
+            <img src="39cc641c6920436233bdfd81d908bca2.jpg" alt="Photo 1" class="photo">
+
+            <h3>comments</h3>
         <div class="comments-section">
             <div class="comment">
-                <img src="artistuday.jpg" alt="User">
+                <img src="nikhilkumar9_90.jpg" alt="User">
                 <div class="comment-content">
                     <div class="username">
-                        artistuday
+                        nikhilkumar9_90
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">सर ब्लू टिक देने के लिए ध्यानवाद मार्केट में बहुत सारे फ्रोड चल रहे है लेकिन आप उन में से नहीं हो thenk u so much 🥰</div>
-                    <div class="comment-details">5m</div>
+                    <div class="comment-details">11d</div>
                 </div>
             </div>
         
             <div class="comment">
-                <img src="mohitedhruv.jpg" alt="User">
+                <img src="mahi_rawat_pilkhwal.jpg" alt="User">
                 <div class="comment-content">
                     <div class="username">
-                        mohitedhruv
+                        mahi_rawat_pilkhwal
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">Thenks you sir mujhe blue tik mil gya only ₹299 wow 😳💞💗</div>
-                    <div class="comment-details">6m</div>
+                    <div class="comment-details">1 y</div>
                 </div>
             </div>
         
             <div class="comment">
-                <img src="parminder__singh__official.jpg" alt="User">
+                <img src="teethapar.jpg" alt="User">
                 <div class="comment-content">
                     <div class="username">
-                        parminder__singh__official
+                        teethapar
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">थैंक यू सर मुझे blue tick मिल गए 25 मिनट के अंदर-अंदर</div>
-                    <div class="comment-details">54m</div>
+                    <div class="comment-details">2w</div>
                 </div>
             </div>
         
             <div class="comment">
-                <img src="iam_aaloksingh.jpg" alt="User">
+                <img src="ganpat_fogera.jpg" alt="User">
                 <div class="comment-content">
                     <div class="username">
-                        iam_aaloksingh
+                        ganpat_fogera
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">Sar mere ko 5000 folower mil Gaye vah bhi ekadam asali follower.</div>
-                    <div class="comment-details">7h</div>
+                    <div class="comment-details">6d</div>
                 </div>
             </div>
         
             <div class="comment">
-                <img src="aman_veer_295.jpg" alt="User">
+                <img src="dimpalchoudhary_official.jpg" alt="User">
                 <div class="comment-content">
                     <div class="username">
-                        aman_veer_295
+                        dimpalchoudhary_official
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">थैंक यू सर आपकी सर्विस मुझे बहुत अच्छी लगी.</div>
-                    <div class="comment-details">16h</div>
+                    <div class="comment-details">11w</div>
                 </div>
             </div>
         
             <div class="comment">
-                <img src="mr.lokendra_04.png" alt="User">
+                <img src="sameer_khaan786.jpg" alt="User">
                 <div class="comment-content">
                     <div class="username">
-                        mr.lokendra_04
+                        sameer_khaan786
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">Sar aapki service bahut acchi lagi Maine mere dost Ko bhi follow lene ke bare mein bataya</div>
-                    <div class="comment-details">1d</div>
+                    <div class="comment-details">2w</div>
                 </div>
             </div>
         
             <div class="comment">
-                <img src="sardar_munda_pb55_.jpg" alt="User">
+                <img src="raj116_1.jpg" alt="User">
                 <div class="comment-content">
                     <div class="username">
-                        sardar_munda_pb55_
+                        raj116_1
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">Received folowers instantly, very happy with Grow Enterprise</div>
-                    <div class="comment-details">1d</div>
+                    <div class="comment-details">1w</div>
                 </div>
             </div>
         
             <div class="comment">
-                <img src="ravi_sidhu0011.jpg" alt="User">
+                <img src="sandip9978.jpg" alt="User">
                 <div class="comment-content">
                     <div class="username">
-                        ravi_sidhu0011
+                        sandip9978
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">Thenks you sir mujhe blue tik aur 20k followers dono mil gya only wow 😳💞💗</div>
@@ -732,14 +681,14 @@
         </script>
 
 
-            <h3>👇 Trust issues ? Check Work Proof in story!👇</h3>
+            <h3>👇 Blue tick prufs 👇</h3>
             <img src="Photo 0.1.jpg" alt="Photo 1" class="photo">
             <img src="Photo 0.2.jpg" alt="Photo 1" class="photo">
             <img src="Photo 0.3.jpg" alt="Photo 1" class="photo">
             <img src="Photo 00.jpg" alt="Photo 1" class="photo">
             <img src="Photo 0.jpg" alt="Photo 1" class="photo">
     
-         <h3>👇 Followers Proofs 👇</h3>
+         <h3>👇 Followers tick prufs 👇</h3>
             <img src="Photo 1.jpg" alt="Photo 1" class="photo">
             <img src="Photo 2.jpg" alt="Photo 2" class="photo">
             <img src="Photo 3.jpg" alt="Photo 3" class="photo">
