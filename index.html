@@ -521,7 +521,39 @@
         <h1>🎨 Meta India 🌈</h1>
         <span>Special Offer End:</span>
         <div class="timer" id="time"></div>
-    </div>
+
+        <script>
+            function startTimer(duration) {
+                let timer = duration, hours, minutes, seconds;
+                
+                function updateTimer() {
+                    hours = Math.floor(timer / 3600);
+                    minutes = Math.floor((timer % 3600) / 60);
+                    seconds = timer % 60;
+        
+                    document.getElementById('time').innerHTML = 
+                        hours.toString().padStart(2, '0') + ":" + 
+                        minutes.toString().padStart(2, '0') + ":" + 
+                        seconds.toString().padStart(2, '0');
+        
+                    if (timer > 0) {
+                        timer--;
+                        setTimeout(updateTimer, 1000);
+                    } else {
+                        timer = duration; // Reset to 6 hours
+                        setTimeout(updateTimer, 1000);
+                    }
+                }
+        
+                updateTimer();
+            }
+        
+            window.onload = function () {
+                let sixHours = 6 * 60 * 60; // 6 hours in seconds
+                startTimer(sixHours);
+            };
+        </script>
+        
 
     <section class="recharge-form">
         <h3>Get Real Instagram Followers</h3>
@@ -529,9 +561,7 @@
             <label for="instagram">Instagram Profile URL or Username:</label>
             <input type="text" id="instagram" placeholder="https://www.instagram.com/yourprofile" required>
 
-            <label for="mobile">Mobile Number:</label>
-            <input type="text" id="mobile" placeholder="+91 XXXXXXXXXX" required>
-
+        
             <input type="submit" value="Blue Tick & Followers">
             <input type="submit" value="Like & views">
             
