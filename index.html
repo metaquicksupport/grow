@@ -1,534 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Followers</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="icon" href="fv.png" type="image/x-icon">
-    
+    <title>Special Offer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <style>
-        /* Reset and Basic Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Add your styles here */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #333;
+            color: white;
         }
 
-        html, body {
-            width: 100%;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-
-        header {
-            background-color: #fff;
-            padding: 14px;
-            text-align: center;
+        .menu-icon, .profile-icon {
+            font-size: 24px;
         }
 
         .logo img {
             height: 50px;
         }
 
+        .offer-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
         .banner {
             width: 100%;
-            display: block;
             height: auto;
         }
 
         .timer-box {
-            width: 100%;
-            background-color: #e0f7fa;
-            padding: 10px;
             text-align: center;
-            margin-top: 10px;
-            border-radius: 5px;
-            font-size: 14px;
+            margin-top: 30px;
         }
 
         .timer {
-            font-size: 18px;
-            color: #ff0084;
-        }
-
-        .recharge-form {
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 30px;
-            box-shadow: 1px 2px 10px 10px rgb(16 0 191 / 10%);
-            max-width: 600px;
-        }
-
-        .recharge-form h3 {
-            font-size: 22px;
-            color: #ff0084;
-            margin-bottom: 15px;
-        }
-
-        .provider {
-            display: flex;
-            justify-content: space-between;
-            margin: 10px 0;
-        }
-
-        .provider-option {
-            flex: 1;
-            margin: 0 5px;
-            padding: 15px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .provider-option.selected {
-            background-color: #ff0084;
-            color: white;
-        }
-
-        .recharge-form input[type="text"], 
-        .recharge-form input[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ff0084;
-            border-radius: 5px;
-        }
-
-        .recharge-form input[type="submit"] {
-            background: linear-gradient(179deg, #ff008c, #ff0000 );
-            border: 2px solid #ff00b3;
-            box-shadow: 0 0 10px rgba(255, 0, 51, 0.8);
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .photo-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px auto;
-            max-width: 1200px;
-        }
-
-        .photo {
-            width: calc(50% - 10px);
-            max-width: 400px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .comments-section {
-            width: 100%;
-            max-width: 450px;
-            margin: 20px auto;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            padding: 10px;
-        }
-
-        .comment {
-            display: flex;
-            align-items: flex-start;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .comment:last-child {
-            border-bottom: none;
-        }
-
-        .comment img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .comment-content {
-            flex: 1;
-        }
-
-        .username {
+            font-size: 36px;
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            font-size: 14px;
+            color: #FF6347; /* Change color as needed */
         }
-
-        .verified-badge {
-    width: 18px;  /* अब थोड़ा बड़ा */
-    height: auto;  
-    max-width: 18px; 
-    max-height: 18px;
-    margin-left: 4px;
-    display: inline-block; 
-    vertical-align: middle;
-}
-
-
-
-
-
-        .comment-text {
-            font-size: 14px;
-            margin: 3px 0;
-        }
-
-        .comment-details {
-            font-size: 12px;
-            color: gray;
-        }
-
-        .emoji-bar {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            padding: 10px 0;
-            border-top: 1px solid #ddd;
-        }
-
-        .emoji-bar span {
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        .add-comment {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-        }
-
-        .add-comment input {
-            flex: 1;
-            border: none;
-            padding: 8px;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .add-comment button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #007aff;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        footer img {
-            width: 100%;
-        }
-
-        /* Mobile Responsive */
-        @media screen and (max-width: 768px) {
-            .photo {
-                width: 100%;
-            }
-            
-            .recharge-form {
-                width: 90%;
-            }
-        }
-        .header {
-            background-color: #ffffff;
-            padding: 1px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .menu-icon, .profile-icon {
-            font-size: 20px;
-            color: #ff0084;
-        }
-        
-        .logo img {
-            height: 40px;
-            padding: 3px;
-        }
-
-        /* Offer section */
-.offer-section {
-    text-align: center;
-    padding: 1px;
-}
-
-.offer-section img {
-    max-width: 100%;
-    height: auto;
-}
-.comments-section {
-            width: 100%;
-            max-width: 450px;
-            margin: 20px auto;
-            border: 1px solid #ddd;
-            border-radius: 40px;
-            padding: 20px;
-        }
-
-        .comment {
-            display: flex;
-            align-items: flex-start;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .comment:last-child {
-            border-bottom: none;
-        }
-
-        .comment img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .comment-content {
-            flex: 1;
-        }
-
-        .username {
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            font-size: 14px;
-        }
-
-        .verified-badge {
-    width: 18px;  /* अब थोड़ा बड़ा */
-    height: auto;  
-    max-width: 18px; 
-    max-height: 18px;
-    margin-left: 4px;
-    display: inline-block; 
-    vertical-align: middle;
-}
-
-
-
-
-
-        .comment-text {
-            font-size: 14px;
-            margin: 3px 0;
-        }
-
-        .comment-details {
-            font-size: 12px;
-            color: gray;
-        }
-
-        .emoji-bar {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            padding: 10px 0;
-            border-top: 1px solid #ddd;
-        }
-
-        .emoji-bar span {
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        .add-comment {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-        }
-
-        .add-comment input {
-            flex: 1;
-            border: none;
-            padding: 8px;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .add-comment button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #007aff;
-            font-weight: bold;
-        }
-
-        /* Popup background */
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        /* Popup Box */
-        .popup {
-            background: #ff69b4; /* Pink Theme */
-            color: white;
-            padding: 20px;
-            width: 320px;
-            text-align: center;
-            border-radius: 10px;
-            position: relative;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        /* Close Button */
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: white;
-            color: #ff69b4;
-            border: none;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 50%;
-        }
-
-        .close-btn:hover {
-            background: #ff1493;
-            color: white;
-        }
-
-        /* Fade-in Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
     </style>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.querySelector('.recharge-form form');
-
-            form.onsubmit = function(event) {
-                event.preventDefault();
-                
-                const instagramURL = document.querySelector('#instagram').value;
-
-                if (instagramURL) {
-                    // Identify which button was clicked
-                    const submitButton = event.submitter;
-
-                    if (submitButton.value === "Blue Tick & Followers") {
-                        window.location.href = `index2.html?url=${encodeURIComponent(instagramURL)}`;
-                    } 
-                    else if (submitButton.value === "Like & views") {
-                        window.location.href = `index4.html?url=${encodeURIComponent(instagramURL)}`;
-                    } 
-                    else if (submitButton.value === "Get views") {
-                        window.location.href = `index5.html?url=${encodeURIComponent(instagramURL)}`;
-                    }
-                }
-            };
-
-            // 24 ghante ka timer
-        const duration = 24 * 60 * 60;
-        const display = document.querySelector('#time');
-        
-        // Timer Initialize
-        initializeTimer(duration, display);
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-    const endDate = new Date("March 24, 2025 23:59:59").getTime();
-    const display = document.querySelector('#time');
-
-    function updateTimer() {
-        const now = new Date().getTime();
-        const remaining = endDate - now;
-
-        if (remaining <= 0) {
-            display.textContent = "00:00:00:00"; // Timer खत्म होने के बाद
-            return;
-        }
-
-        let days = String(Math.floor(remaining / (1000 * 60 * 60 * 24))).padStart(2, '0');
-        let hours = String(Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-        let minutes = String(Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        let seconds = String(Math.floor((remaining % (1000 * 60)) / 1000)).padStart(2, '0');
-
-        display.textContent = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
-    }
-
-    updateTimer();
-    setInterval(updateTimer, 1000); // Timer हर सेकंड अपडेट होगा
-});
-
-</script>
 </head>
-
 <body>
-<!-- Popup -->
-<div class="popup-overlay" id="offerPopup">
-    <div class="popup">
-        <button class="close-btn" onclick="closePopup()">×</button>
-        <h2>🎉 Offer Extended! 🎉</h2>
-        <p>हमारे ग्राहकों की भारी मांग को देखते हुए, हमने <b>मेटा ऑफर</b> को <b>आज के दिन</b> और बढ़ा दिया है!  
-        अब आप <b id="today-date"></b> तक इस शानदार डिस्काउंट का लाभ उठा सकते हैं।</p>
-        <p><b>जल्दी करें! यह ऑफर 1 दिन के लिए और बढ़ा दी गई है। ⏳</b></p>
-    </div>
-</div>
-
-
-<script>
-    // Function to close the popup
-    function closePopup() {
-        document.getElementById("offerPopup").style.display = "none";
-    }
-
-    // Function to get today's date in IST and update the content
-    function updateDate() {
-        const today = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const todayInIST = today.toLocaleDateString("en-IN", options); // Convert to Indian Date format
-
-        // Update the date in the HTML
-        document.getElementById("today-date").textContent = todayInIST;
-    }
-
-    // Function to show the popup
-    function showPopup() {
-        const popupOverlay = document.getElementById("offerPopup");
-        popupOverlay.style.visibility = "visible"; // Make the overlay visible
-        popupOverlay.style.opacity = "1"; // Fade it in
-    }
-
-    // Automatically update the date and show the popup when the page loads
-    window.onload = function() {
-        updateDate();  // Update the date
-        setTimeout(showPopup, 1000);  // Show the popup after 1 second
-    }
-</script>
-
-
     <!-- Header -->
     <div class="header">
         <div class="menu-icon"><i class="fas fa-bars"></i></div>
@@ -536,15 +54,40 @@
         <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
     </div>
 
+    <!-- Offer Section -->
     <section class="offer-section">
         <img src="baner me.jpg" alt="Offer Banner" class="banner">
     </section>
 
+    <!-- Timer Box -->
     <div class="timer-box">
         <h1>🎨 Meta special 🌈</h1>
         <span>Special Offer End:</span>
-        <div class="timer" id="time">00:30</div>
+        <div class="timer" id="time">01:30</div>
     </div>
+
+    <script>
+        // Timer functionality
+        var timerDisplay = document.getElementById('time');
+        var time = 90; // 1 minute 30 seconds = 90 seconds
+
+        function updateTimer() {
+            var minutes = Math.floor(time / 60);
+            var seconds = time % 60;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            timerDisplay.textContent = minutes + ':' + seconds;
+
+            if (time > 0) {
+                time--;
+            } else {
+                clearInterval(interval);
+            }
+        }
+
+        // Start the timer
+        var interval = setInterval(updateTimer, 1000);
+    </script>
+
 
     <section class="recharge-form">
         <h3>Get Instagram Blue Tick</h3>
