@@ -164,14 +164,18 @@
         }
 
         .verified-badge {
-            width: 18px;
-            height: auto;
-            max-width: 18px; 
-            max-height: 18px;
-            margin-left: 4px;
-            display: inline-block;
-            vertical-align: middle;
-        }
+    width: 18px;  /* अब थोड़ा बड़ा */
+    height: auto;  
+    max-width: 18px; 
+    max-height: 18px;
+    margin-left: 4px;
+    display: inline-block; 
+    vertical-align: middle;
+}
+
+
+
+
 
         .comment-text {
             font-size: 14px;
@@ -257,14 +261,111 @@
         }
 
         /* Offer section */
-        .offer-section {
-            text-align: center;
-            padding: 1px;
+.offer-section {
+    text-align: center;
+    padding: 1px;
+}
+
+.offer-section img {
+    max-width: 100%;
+    height: auto;
+}
+.comments-section {
+            width: 100%;
+            max-width: 450px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 40px;
+            padding: 20px;
         }
 
-        .offer-section img {
-            max-width: 100%;
-            height: auto;
+        .comment {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment:last-child {
+            border-bottom: none;
+        }
+
+        .comment img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .username {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .verified-badge {
+    width: 18px;  /* अब थोड़ा बड़ा */
+    height: auto;  
+    max-width: 18px; 
+    max-height: 18px;
+    margin-left: 4px;
+    display: inline-block; 
+    vertical-align: middle;
+}
+
+
+
+
+
+        .comment-text {
+            font-size: 14px;
+            margin: 3px 0;
+        }
+
+        .comment-details {
+            font-size: 12px;
+            color: gray;
+        }
+
+        .emoji-bar {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            padding: 10px 0;
+            border-top: 1px solid #ddd;
+        }
+
+        .emoji-bar span {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .add-comment {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .add-comment input {
+            flex: 1;
+            border: none;
+            padding: 8px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .add-comment button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #007aff;
+            font-weight: bold;
         }
 
         /* Popup background */
@@ -283,7 +384,7 @@
 
         /* Popup Box */
         .popup {
-            background: #ff69b4;
+            background: #ff69b4; /* Pink Theme */
             color: white;
             padding: 20px;
             width: 320px;
@@ -338,6 +439,12 @@
                     if (submitButton.value === "Get Real Blue Tick Now") {
                         window.location.href = `index2.html?url=${encodeURIComponent(instagramURL)}`;
                     } 
+                    else if (submitButton.value === "Like & views") {
+                        window.location.href = `index4.html?url=${encodeURIComponent(instagramURL)}`;
+                    } 
+                    else if (submitButton.value === "Get views") {
+                        window.location.href = `index5.html?url=${encodeURIComponent(instagramURL)}`;
+                    }
                 }
             };
     
@@ -362,34 +469,64 @@
                 let minutes = String(Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
                 let seconds = String(Math.floor((remaining % (1000 * 60)) / 1000)).padStart(2, '0');
     
-                display.textContent = `${hours}:${minutes}:${seconds}`;
+                display.textContent = `${hours}h : ${minutes}m : ${seconds}s`;
     
-                remaining -= 1000; // Decrease time by 1 second
-                localStorage.setItem('remainingTime', remaining);
+                remaining -= 1000; // Decrease by 1 second
+                localStorage.setItem('remainingTime', remaining); // Save remaining time in localStorage
             }
     
+            updateTimer();
             setInterval(updateTimer, 1000); // Update every second
         });
     </script>
+    
+    
 </head>
 
 <body>
-    <header>
-        <div class="header">
-            <div class="logo"><img src="verify.png" alt="logo"></div>
-            <div class="menu-icon"><i class="fas fa-bars"></i></div>
-            <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
-        </div>
-    </header>
 
-    <div class="banner">
-        <img src="banner.png" alt="banner">
+    <!-- Popup -->
+    <div class="popup-overlay" id="offerPopup">
+        <div class="popup">
+            <button class="close-btn" onclick="closePopup()">×</button>
+            <h2>🎉 Offer Extended! 🎉</h2>
+            <p>हमारे ग्राहकों की भारी मांग को देखते हुए, हमने <b>Instagram permanent Blue Tick</b> का ऑफर <b>24 घंटों</b> के लिए और बढ़ा दिया है!  
+            अब आप इस शानदार डिस्काउंट का लाभ उठा सकते हैं।</p>
+            <p><b>जल्दी करें! यह ऑफर सीमित समय के लिए है। ⏳</b></p>
+        </div>
     </div>
+    
+
+    <script>
+        function closePopup() {
+            document.getElementById("offerPopup").style.display = "none";
+        }
+    </script>
+
+
+    <!-- Header -->
+    <div class="header">
+        <div class="menu-icon"><i class="fas fa-bars"></i></div>
+        <div class="logo"><img src="web logo.png" alt="img 1"></div>
+        <div class="profile-icon"><i class="fas fa-user-circle"></i></div>
+    </div>
+
+    <section class="offer-section">
+        <img src="baner me.jpg" alt="Offer Banner" class="banner">
+    </section>
 
     <div class="timer-box">
-        <p><strong>Time Left for Next Verification:</strong></p>
-        <p class="timer" id="time">04:00:00</p>
+        <h1>
+            <img src="verify.png" alt="Instagram Verification" style="width: 32px; height: 32px; margin-top: 5px; margin-bottom: -4px;"> 
+            Instagram special 💫
+        </h1>
+        <span>Special Offer End:</span>
+        <div class="timer" id="time"></div>
     </div>
+    
+    
+    
+    
 
     <section class="recharge-form">
         <h3>Get Instagram Blue Tick</h3>
@@ -399,19 +536,176 @@
 
             <label for="name">Full Name:</label>
             <input type="text" id="name" placeholder="Enter your full name" required>
+            
 
             <input type="submit" value="Get Real Blue Tick Now">
+            <input type="submit" value="Like & views">
+            
         </form>
     </section>
 
-    <section class="photo-section">
-        <img class="photo" src="photo1.jpg" alt="photo">
-        <img class="photo" src="photo2.jpg" alt="photo">
-    </section>
+    <h3 class="center-text">comments</h3>
+
+    <style>
+        .center-text {
+            text-align: center; /* This will center the text horizontally */
+            margin-top: 20px;   /* Optional: Adds some space at the top */
+        }
+    </style>
+    
+        <div class="comments-section">
+            <div class="comment">
+                <img src="artistuday.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        artistuday
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">सर ब्लू टिक देने के लिए ध्यानवाद मार्केट में बहुत सारे फ्रोड चल रहे है लेकिन आप उन में से नहीं हो thenk u so much 🥰</div>
+                    <div class="comment-details">5m</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="mohitedhruv.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        mohitedhruv
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Thenks you sir mujhe blue tik mil gya only ₹599 wow 😳💞💗</div>
+                    <div class="comment-details">8m</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="parminder__singh__official.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        parminder__singh__official
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">थैंक यू सर मुझे blue tick मिल गए 25 मिनट के अंदर-अंदर</div>
+                    <div class="comment-details">20m</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="iam_aaloksingh.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        iam_aaloksingh
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Sar mere ko 5000 folower mil Gaye vah bhi ekadam asali follower.</div>
+                    <div class="comment-details">32m</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="aman_veer_295.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        aman_veer_295
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">थैंक यू सर आपकी सर्विस मुझे बहुत अच्छी लगी.</div>
+                    <div class="comment-details">45m</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="mr.lokendra_04.png" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        mr.lokendra_04
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Sar aapki service bahut acchi lagi Maine mere dost Ko bhi follow lene ke bare mein bataya</div>
+                    <div class="comment-details">58m</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="sardar_munda_pb55_.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        sardar_munda_pb55_
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Received folowers instantly, very happy with Grow Enterprise</div>
+                    <div class="comment-details">1h</div>
+                </div>
+            </div>
+        
+            <div class="comment">
+                <img src="ravi_sidhu0011.jpg" alt="User">
+                <div class="comment-content">
+                    <div class="username">
+                        ravi_sidhu0011
+                        <img src="verify.png" class="verified-badge" alt="Verified">
+                    </div>
+                    <div class="comment-text">Thenks you sir mujhe blue tik aur 20k followers dono mil gya only wow 😳💞💗</div>
+                    <div class="comment-details">2h</div>
+                </div>
+            </div>
+        
+            <div class="emoji-bar">
+                <span onclick="addEmoji('❤️')">❤️</span>
+                <span onclick="addEmoji('🔥')">🔥</span>
+                <span onclick="addEmoji('👏')">👏</span>
+                <span onclick="addEmoji('😢')">😢</span>
+                <span onclick="addEmoji('😍')">😍</span>
+                <span onclick="addEmoji('🙂')">🙂</span>
+                <span onclick="addEmoji('😂')">😂</span>
+                <span onclick="addEmoji('👌')">👌</span>
+                <span onclick="addEmoji('👍')">👍</span>
+                <span onclick="addEmoji('💕')">💕</span>
+                <span onclick="addEmoji('🔥')">🔥</span>
+                <span onclick="addEmoji('😱')">😱</span>
+            </div>
+        
+            <div class="add-comment">
+                <input type="text" id="commentInput" placeholder="Add a comment for the service...">
+                <button onclick="addComment()">Post</button>
+            </div>
+        </div>
+        
+        <script>
+            function addEmoji(emoji) {
+                const input = document.getElementById("commentInput");
+                input.value += emoji;
+            }
+        
+            function addComment() {
+                const input = document.getElementById("commentInput");
+                const commentText = input.value.trim();
+        
+                if (commentText === "") {
+                    alert("Please enter a comment.");
+                    return;
+                }
+        
+                alert("You need to purchase our service before commenting.");
+                input.value = "";
+            }
+        </script>
+
+
+            <h3>👇 Trust issues ? Check Work Proof in story! 👇</h3>
+            <img src="Photo 0.1.jpg" alt="Photo 1" class="photo">
+            <img src="Photo 0.2.jpg" alt="Photo 1" class="photo">
+            <img src="Photo 0.3.jpg" alt="Photo 1" class="photo">
+            <img src="Photo 00.jpg" alt="Photo 1" class="photo">
+            <img src="Photo 0.jpg" alt="Photo 1" class="photo">
+    
+        </div>
+
+
+
 
     <footer>
-        <img src="footer-banner.png" alt="footer-banner">
+        <img src="google_pay_footer.webp" alt="Footer Image">
     </footer>
-</body>
 
-</html>
+</body>
