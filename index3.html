@@ -374,10 +374,6 @@ body {
             <div class="qr-code">
                 <img src="qr-codes.jpg" alt="QR Code">
 
-                <a href="qr-codes.jpg" download="qr-codes.jpg" class="download-btn">
-                    <i class="fa-solid fa-download"></i> DOWNLOAD QR
-                </a>
-
                 <p class="special-text">If you want to pay using UPI, click on the UPI button below.👇</p>
 
                 <button class="upi-copy-button" onclick="copyUPIID()">
@@ -423,82 +419,38 @@ window.onload = function () {
         document.body.style.overflow = "auto"; // Enable scrolling after load
     }, 1500); // 1.5 sec me hide ho jayega
 };
-
+ 
 
 
         // Form Submit Handler
         document.getElementById('paymentForm').onsubmit = function(event) {
             event.preventDefault();
-            
             var transactionId = document.getElementById('transactionId').value;
-            var popupIncorrect = document.getElementById('popupIncorrect');
-            var popupSuccess = document.getElementById('popupSuccess');
-
-            if (transactionId.toLowerCase() === '722115163415') {
-                popupSuccess.style.display = 'block';
+            if (transactionId === 'correct_utr_code') { 
+                document.getElementById('popupSuccess').style.display = 'block';
             } else {
-                popupIncorrect.style.display = 'block';
+                document.getElementById('popupIncorrect').style.display = 'block';
+            }
+        };
+
+        // Timer Countdown
+        var timer = document.getElementById('time');
+        var countdown = 86400; // 24 hours in seconds
+
+        function updateTimer() {
+            var hours = Math.floor(countdown / 3600);
+            var minutes = Math.floor((countdown % 3600) / 60);
+            var seconds = countdown % 60;
+
+            timer.innerHTML = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+
+            if (countdown > 0) {
+                countdown--;
             }
         }
 
-        // Close Popup Function
-        function closePopup(popupId) {
-            document.getElementById(popupId).style.display = 'none';
-        }
-
-        // 24 ghante ka timer
-        const duration = 24 * 60 * 60;
-        const display = document.querySelector('#time');
-        
-        // Timer Initialize
-        initializeTimer(duration, display);
-
-    function initializeTimer(duration, display) {
-        let endTime = sessionStorage.getItem('endTime');
-
-        // Agar endTime nahi hai to naya set karein
-        if (!endTime || Date.now() > endTime) {
-            endTime = Date.now() + duration * 1000;  // Naya 24 ghante ka set karein
-            sessionStorage.setItem('endTime', endTime);
-        }
-
-        updateTimer(endTime, display);
-    }
-
-    function updateTimer(endTime, display) {
-        let timerInterval = setInterval(function () {
-            let now = Date.now();
-            let remaining = Math.floor((endTime - now) / 1000);
-
-            if (remaining <= 0) {
-                // Timer 0 par aaya to fir se reset karein
-                sessionStorage.setItem('endTime', Date.now() + 24 * 60 * 60 * 1000);
-                remaining = 24 * 60 * 60;
-            }
-
-            let hours = parseInt(remaining / 3600, 10);
-            let minutes = parseInt((remaining % 3600) / 60, 10);
-            let seconds = parseInt(remaining % 60, 10);
-
-            hours = hours < 10 ? "0" + hours : hours;
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            display.textContent = `${hours}:${minutes}:${seconds}`;
-        }, 1000);
-    }
-        // UPI ID Copy Karne Ke Liye Function
-    function copyUPIID() {
-            const upiID = document.getElementById("upi-text").innerText;
-            const tempInput = document.createElement("input");
-            tempInput.value = upiID;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            alert("UPI ID copied: " + upiID);
-        }
-
+        setInterval(updateTimer, 1000);
     </script>
+
 </body>
 </html>
