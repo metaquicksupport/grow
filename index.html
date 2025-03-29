@@ -251,11 +251,8 @@
         }
 
         .menu-icon, .profile-icon {
-<<<<<<< HEAD
-            font-size: 30px;
-=======
-            font-size: 20px;
->>>>>>> parent of 3755d26 (Update index.html)
+
+
             color: #ff0084;
         }
         
@@ -468,8 +465,8 @@
         const now = new Date().getTime();
         const remaining = endDate - now;
 
-        if (remaining <= 0) {
-            display.textContent = "00:00:00:00"; // Timer खत्म होने के बाद
+        if (remaining <= 30) {
+            display.textContent = "00:00"; // Timer खत्म होने के बाद
             return;
         }
 
@@ -500,38 +497,6 @@
     </div>
 </div>
 
-
-<script>
-    // Function to close the popup
-    function closePopup() {
-        document.getElementById("offerPopup").style.display = "none";
-    }
-
-    // Function to get today's date in IST and update the content
-    function updateDate() {
-        const today = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const todayInIST = today.toLocaleDateString("en-IN", options); // Convert to Indian Date format
-
-        // Update the date in the HTML
-        document.getElementById("today-date").textContent = todayInIST;
-    }
-
-    // Function to show the popup
-    function showPopup() {
-        const popupOverlay = document.getElementById("offerPopup");
-        popupOverlay.style.visibility = "visible"; // Make the overlay visible
-        popupOverlay.style.opacity = "1"; // Fade it in
-    }
-
-    // Automatically update the date and show the popup when the page loads
-    window.onload = function() {
-        updateDate();  // Update the date
-        setTimeout(showPopup, 1000);  // Show the popup after 1 second
-    }
-</script>
-
-
     <!-- Header -->
     <div class="header">
         <div class="menu-icon"><i class="fas fa-bars"></i></div>
@@ -551,9 +516,6 @@
         <span> Offer Till:</span>
         <div class="date" id="date">27-03-2025</div>
     </div>
-    
-    
-    
     
     <script>
         // Get today's date in Indian format (DD-MM-YYYY)
@@ -589,13 +551,7 @@
         }
     </style>
     
-    
-    
-            
-    
-    
-
-
+<!-- 
     <section class="recharge-form">
         <h3>Get Instagram Blue Tick</h3>
         <form>
@@ -608,9 +564,22 @@
             <input type="submit" value="Click here for the Blue Tick verification ">
             <input type="submit" value="Like & Views">
         </form>
-    </section>
+    </section> -->
     
+    <section class="recharge-form">
+        <h3>Get Real Instagram Followers</h3>
+        <form>
+            <label for="instagram">Instagram Profile URL or Username:</label>
+            <input type="text" id="instagram" placeholder="https://www.instagram.com/yourprofile" required>
 
+            <label for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" placeholder="+91 XXXXXXXXXX" required>
+
+            <input type="submit" value="Blue Tick & Followers">
+            <input type="submit" value="Like & views">
+            
+        </form>
+    </section>
     
     
     
