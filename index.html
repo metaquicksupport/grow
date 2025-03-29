@@ -543,27 +543,22 @@
     <section class="offer-section">
         <img src="baner me.jpg" alt="Offer Banner" class="banner">
     </section>
-
     <div class="timer-box">
         <h1>🎨 Meta special 🌈</h1>
         <span>Special Offer End:</span>
-        <div class="timer" id="time">00:30</div>
+        <div class="timer" id="time">30</div>
     </div>
     
     <script>
         // Set the starting time (30 seconds)
         let timeLeft = 30;
-    
+        
         // Function to update the timer
         function updateTimer() {
             const timerElement = document.getElementById("time");
     
-            // Calculate minutes and seconds
-            const minutes = Math.floor(timeLeft / 60); // Always 0 minutes since it's 30 seconds
-            const seconds = timeLeft % 60;
-    
-            // Display time in MM:SS format
-            timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            // Display time as a single digit or two digits without leading zeros
+            timerElement.textContent = timeLeft;
     
             // Decrease the time by 1 second
             if (timeLeft > 0) {
@@ -573,11 +568,26 @@
                 alert("The special offer has ended!");
             }
         }
-    
+        
         // Call updateTimer every second to start immediately
         const timerInterval = setInterval(updateTimer, 1000);
     </script>
     
+    <style>
+        /* Styling the timer */
+        .timer-box {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+        }
+    
+        .timer {
+            font-size: 18px; /* Set font size to 18px */
+            font-weight: bold;
+            color: #ff6347;
+            display: inline-block;
+        }
+    </style>
     
     
 
@@ -619,7 +629,7 @@
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">सर ब्लू टिक देने के लिए ध्यानवाद मार्केट में बहुत सारे फ्रोड चल रहे है लेकिन आप उन में से नहीं हो thenk u so much 🥰</div>
-                    <div class="comment-details">12m</div>
+                    <div class="comment-details">5m</div>
                 </div>
             </div>
         
@@ -631,7 +641,7 @@
                         <img src="verify.png" class="verified-badge" alt="Verified">
                     </div>
                     <div class="comment-text">Thenks you sir mujhe blue tik mil gya only ₹299 wow 😳💞💗</div>
-                    <div class="comment-details">20m</div>
+                    <div class="comment-details">16m</div>
                 </div>
             </div>
         
